@@ -26,11 +26,10 @@ export default {
             throw new Error('Email/Password does not match');
         }
 
-        const { secret, expiresIn } = authConfig.jwt;
+        const { secret } = authConfig.jwt;
 
         const token = sign({}, secret, {
-            subject: String(user.id),
-            expiresIn,
+            subject: String(user.id)
         });
 
         const userFormatted = users_view.render(user);
