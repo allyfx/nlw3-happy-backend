@@ -6,6 +6,7 @@ import OrphanagesController from './controllers/OrphanagesController';
 
 import UsersController from './controllers/UsersController';
 import SessionsController from './controllers/SessionsController';
+import ForgotPasswordController from './controllers/ForgotPasswordController';
 
 const routes = Router();
 const upload = multer(uploadConfig);
@@ -16,5 +17,6 @@ routes.post('/orphanages', upload.array('images'),OrphanagesController.create);
 
 routes.post('/user/register', UsersController.create);
 routes.post('/user/authenticate', SessionsController.create);
+routes.post('/user/forgot', ForgotPasswordController.create);
 
 export default routes;

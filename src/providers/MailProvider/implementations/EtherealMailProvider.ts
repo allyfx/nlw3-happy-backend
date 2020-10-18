@@ -5,7 +5,7 @@ import SendMailDTO from '../dtos/SendMailDTO';
 
 import MailConfig from '../../../config/mail';
 
-export default class EtherealMailProvider implements MailProvider {
+class EtherealMailProvider implements MailProvider {
     private client: Transporter;
 
     constructor() {
@@ -36,10 +36,11 @@ export default class EtherealMailProvider implements MailProvider {
             },
             subject,
             html: `
-                <h1>Olá ${to.name}</h1>
+                <h3>Olá ${to.name}</h3>
                 <p>Recebemos uma solicitação para redefinição da sua senha.</p>
+                <a href="${link}">Aqui está o seu link para redefinir a senha.</a>
                 </br>
-                <a href="${link}">Aqui está o seu link para recuperação.</a>
+                </br>
                 Atenciosamente,<br/>
                 Equipe <strong>Happy</strong>
             `,
@@ -49,3 +50,5 @@ export default class EtherealMailProvider implements MailProvider {
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
     }
 }
+
+export default EtherealMailProvider;
