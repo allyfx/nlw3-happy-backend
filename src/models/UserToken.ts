@@ -7,15 +7,15 @@ import {
 
 @Entity('user_tokens')
 class UserToken {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn('increment')
     id: string;
 
     @Column()
-    @Generated()
+    @Generated('uuid')
     token: string;
 
     @Column()
-    user_id: string;
+    user_id: number;
 }
 
 export default UserToken;
