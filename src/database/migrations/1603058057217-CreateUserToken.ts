@@ -23,7 +23,17 @@ export default class CreateUserToken1603058057217 implements MigrationInterface 
                 {
                     name: 'user_id',
                     type: 'integer',
-                }
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
+                {
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
             ],
             foreignKeys: [
                 {
