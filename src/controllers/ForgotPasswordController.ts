@@ -35,7 +35,7 @@ export default {
         });
 
         return response.status(200).json({
-            link: `${process.env.APP_WEB_URL}/reset-password?token=${token.token}`
+            link: `/reset-password?token=${token.token}`
         });
     }
 }
