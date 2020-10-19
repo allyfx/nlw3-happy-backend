@@ -9,7 +9,7 @@ import authConfig from '../config/authConfig';
 import User from '../models/User';
 
 export default {
-    async create(request: Request, response: Response) {
+    async create(request: Request, response: Response): Promise<Response> {
         const { email, password } = request.body;
 
         const usersRepository = getRepository(User);
@@ -17,13 +17,13 @@ export default {
         const user = await usersRepository.findOne({ where: { email } });
 
         if (!user) {
-            throw new Error('Email/Password does not match');
+            return response.status(400).json({ message: "Email/password does not match." });
         }
 
         const passwordConfirm = await compare(password, user.password);
 
         if (!passwordConfirm) {
-            throw new Error('Email/Password does not match');
+            return response.status(400).json({ message: "Email/password does not match." });
         }
 
         const { secret } = authConfig.jwt;
