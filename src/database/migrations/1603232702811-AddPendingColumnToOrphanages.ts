@@ -7,6 +7,7 @@ export default class AddPendingColumnToOrphanages1603232702811 implements Migrat
             name: 'pending',
             type: "boolean",
             default: true,
+            isNullable: true,
         }))
     }
 
