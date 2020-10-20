@@ -8,6 +8,7 @@ import UsersController from './controllers/UsersController';
 import SessionsController from './controllers/SessionsController';
 import ForgotPasswordController from './controllers/ForgotPasswordController';
 import ResetPasswordController from './controllers/ResetPasswordController';
+import AdminController from './controllers/AdminController';
 
 const routes = Router();
 const upload = multer(uploadConfig);
@@ -20,5 +21,8 @@ routes.post('/user/register', UsersController.create);
 routes.post('/user/authenticate', SessionsController.create);
 routes.post('/user/forgot', ForgotPasswordController.create);
 routes.post('/user/reset', ResetPasswordController.create);
+
+routes.post('/admin/pending/:id', AdminController.create);
+routes.get('/admin/pending', AdminController.index);
 
 export default routes;
