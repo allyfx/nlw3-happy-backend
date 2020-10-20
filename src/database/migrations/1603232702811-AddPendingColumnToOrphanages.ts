@@ -6,7 +6,7 @@ export default class AddPendingColumnToOrphanages1603232702811 implements Migrat
         await queryRunner.addColumn('orphanages', new TableColumn({
             name: 'pending',
             type: "boolean",
-            default: false,
+            default: true,
         }))
     }
 
