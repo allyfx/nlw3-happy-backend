@@ -4,6 +4,7 @@ import orphanage_view from '../views/orphanages_view';
 import * as Yup from 'yup';
 
 import Orphanage from '../models/Orphanage';
+import Image from '../models/Image';
 
 export default {
     async index(request: Request, response: Response) {
@@ -98,5 +99,38 @@ export default {
         await orphanagesRepository.delete(id);
 
         return response.status(200).json();
+    },
+
+    async update(request: Request, response: Response) {
+        const {
+            id,
+            name,
+            latitude,
+            longitude,
+            about,
+            instructions,
+            opening_hours,
+            open_on_weekends
+        } = request.body;
+
+        const orphanagesRepository = getRepository(Orphanage);
+
+        const orphanageExists = await orphanagesRepository.findOne(id);
+
+        if (!orphanageExists) {
+            return;
+        }
+
+        orphanageExists.name = name;
+        orphanageExists.latitude = latitude;
+        orphanageExists.longitude = longitude;
+        orphanageExists.about = about;
+        orphanageExists.instructions = instructions;
+        orphanageExists.opening_hours = opening_hours;
+        orphanageExists.open_on_weekends = open_on_weekends;
+
+        await orphanagesRepository.save(orphanageExists);
+
+        return response.status(200).json(orphanage_view.render(orphanageExists));
     }
 }
