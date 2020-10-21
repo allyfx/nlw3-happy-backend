@@ -83,5 +83,15 @@ export default {
         await orphanagesRepository.save(orphanage);
     
         return response.status(201).json(orphanage_view.render(orphanage));
+    },
+
+    async delete(request: Request, response: Response) {
+        const { id } = request.params;
+
+        const orphanagesRepository = getRepository(Orphanage);
+
+        await orphanagesRepository.delete(id);
+
+        return response.status(200).json();
     }
 }
