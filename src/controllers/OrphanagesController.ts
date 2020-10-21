@@ -14,6 +14,10 @@ export default {
             where: { pending: false }
         });
 
+        if (orphanages.length === 0) {
+            return response.status(200).json();
+        }
+
         return response.json(orphanage_view.renderMany(orphanages));
     },
 
@@ -56,6 +60,7 @@ export default {
             instructions,
             opening_hours,
             open_on_weekends: open_on_weekends === 'true',
+            pending: true,
             images
         };
 
